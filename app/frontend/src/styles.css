@@ -1,0 +1,30 @@
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+body { margin: 0; }
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header { display: flex; justify-content: space-between; align-items: center; }
+
+.card {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+  display: grid;
+  gap: 12px;
+}
+
+textarea, button, select {
+  font: inherit;
+  padding: 10px;
+}
