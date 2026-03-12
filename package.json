@@ -3,15 +3,12 @@
   "private": true,
   "version": "0.1.0",
   "workspaces": [
-    "app/frontend",
-    "backend"
+    "apps/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace @dochunter/frontend",
-    "build": "npm run build --workspace @dochunter/frontend",
-    "lint": "npm run lint --workspace @dochunter/frontend"
-  },
-  "devDependencies": {
-    "@vercel/node": "^5.3.24"
+    "dev:web": "npm --workspace apps/web run dev",
+    "dev:api": "npm --workspace apps/api run dev",
+    "build:web": "npm --workspace apps/web run build",
+    "build:api": "npm --workspace apps/api run build"
   }
 }

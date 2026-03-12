@@ -1,0 +1,13 @@
+{
+  "name": "dochunter-api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/server.js",
+    "build": "echo build step pending"
+  },
+  "dependencies": {
+    "fastify": "^4.28.1"
+  }
+}
