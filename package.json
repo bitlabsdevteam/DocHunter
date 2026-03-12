@@ -1,0 +1,17 @@
+{
+  "name": "dochunter",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "app/frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @dochunter/frontend",
+    "build": "npm run build --workspace @dochunter/frontend",
+    "lint": "npm run lint --workspace @dochunter/frontend"
+  },
+  "devDependencies": {
+    "@vercel/node": "^5.3.24"
+  }
+}
