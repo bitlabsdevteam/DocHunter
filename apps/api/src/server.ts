@@ -2,6 +2,7 @@ import Fastify from 'fastify';
 import { assertRuntimeReadiness, env } from './config/env.js';
 import { registerLocateCareRoute } from './routes/locate-care.js';
 import { registerBookingIntentRoute } from './routes/booking-intent.js';
+import { registerDiscoveryResearchRoute } from './routes/discovery-research.js';
 import { frameworkEvaluation, recommendedFramework } from './agent/framework/evaluation.js';
 import { japanDirectorySources } from './integrations/japan-directory/source-registry.js';
 import { discoveryQueries } from './integrations/japan-directory/research-queries.js';
@@ -33,6 +34,7 @@ app.get('/api/status', async () => ({
 
 await registerLocateCareRoute(app);
 await registerBookingIntentRoute(app);
+await registerDiscoveryResearchRoute(app);
 
 app.listen({ port: env.PORT, host: '0.0.0.0' }).catch((err) => {
   app.log.error(err);

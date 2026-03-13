@@ -17,6 +17,7 @@ export interface ClinicCandidate {
   specialty: string;
   availabilityHint: string;
   bookingMode: 'external_link' | 'phone' | 'mcp_booking';
+  sourceUrl?: string;
 }
 
 export interface LocateCareResponse {

@@ -10,7 +10,7 @@ OpenClaw architecture reference used in design thinking: https://github.com/open
 - `apps/api` — Fastify orchestration API
   - `src/workflows` — care-location workflow graph seam
   - `src/agent/framework` — framework evaluation + recommendation
-  - `src/tools` — Perplexity-backed clinic discovery adapter seam
+  - `src/tools` — live Perplexity clinic discovery adapter + fallback
   - `src/mcp` — MCP registry/tool contracts (directory + booking)
   - `src/integrations/japan-directory` — JP healthcare source registry
 
@@ -51,6 +51,12 @@ npm run dev:web
 
 ```bash
 ./scripts/docker-up.sh
+```
+
+## Vercel Deploy Path (token from local OpenClaw env)
+
+```bash
+./scripts/vercel-deploy.sh
 ```
 
 ## Current Safety Guardrail

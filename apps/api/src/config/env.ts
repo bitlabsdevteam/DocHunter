@@ -13,6 +13,10 @@ const EnvSchema = z.object({
 
   RESEARCH_ENGINE: z.enum(['perplexity']).default('perplexity'),
   PERPLEXITY_API_KEY: z.string().optional(),
+  PERPLEXITY_MODEL: z.string().default('sonar-pro'),
+  PERPLEXITY_BASE_URL: z.string().default('https://api.perplexity.ai'),
+  PERPLEXITY_TIMEOUT_MS: z.coerce.number().default(35000),
+  PERPLEXITY_MAX_RETRIES: z.coerce.number().default(2),
 
   SUPABASE_URL: z.string().optional(),
   SUPABASE_ANON_KEY: z.string().optional(),
