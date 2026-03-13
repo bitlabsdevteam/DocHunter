@@ -2,7 +2,6 @@
 
 DocHunter is an AI Agentic Healthcare Locator for Japan (MVP/POC), designed for Vercel-first deployment with MCP-based tool boundaries.
 
-OpenClaw architecture reference used in design thinking: https://github.com/openclaw/openclaw
 
 ## MVP Architecture Skeleton
 
@@ -16,7 +15,7 @@ OpenClaw architecture reference used in design thinking: https://github.com/open
 
 ## Framework Decision (for DocHunter)
 
-Evaluated: **LangGraph**, **LangChain**, **Mastra**, and a custom OpenClaw-style orchestrator.
+Evaluated: **LangGraph**, **LangChain**, **Mastra**, and a custom orchestrator.
 
 Current recommendation for this POC: **LangGraph**
 - best control for safety-gated healthcare flow
@@ -36,7 +35,7 @@ Current recommendation for this POC: **LangGraph**
 - Never commit real secrets
 - Create local env with:
   - `./scripts/setup-env.sh`
-- Load Vercel key from local OpenClaw env when deploying:
+- Load Vercel key from local machine env when deploying:
   - `./scripts/load-vercel-env.sh`
 
 ## Local Dev
@@ -53,7 +52,7 @@ npm run dev:web
 ./scripts/docker-up.sh
 ```
 
-## Vercel Deploy Path (token from local OpenClaw env)
+## Vercel Deploy Path (token from local env)
 
 ```bash
 ./scripts/vercel-deploy.sh
