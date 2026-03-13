@@ -16,6 +16,7 @@ type LocateCarePayload = {
   triage: { urgency: string; specialty: string; emergencyBypass: boolean; disclaimer: string }
   recommendations: Clinic[]
   model: { provider: 'openai' | 'gemini'; model: string }
+  mcp: { toolsUsed: string[]; mode: string }
 }
 
 function App() {
@@ -117,6 +118,8 @@ function App() {
             <strong>Model Route:</strong> {carePlan.model.provider} / {carePlan.model.model}
             <div><strong>Urgency:</strong> {carePlan.triage.urgency}</div>
             <div><strong>Specialty:</strong> {carePlan.triage.specialty}</div>
+            <div><strong>MCP Mode:</strong> {carePlan.mcp.mode}</div>
+            <div><strong>MCP Tools:</strong> {carePlan.mcp.toolsUsed.join(', ')}</div>
             <div>{carePlan.triage.disclaimer}</div>
           </article>
 

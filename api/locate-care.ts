@@ -16,8 +16,12 @@ type Clinic = {
 type LocateCareResponse = {
   ok: boolean
   model: { provider: 'openai' | 'gemini'; model: string }
-  flow: Array<{ agent: 'intake' | 'safety-triage' | 'clinic-discovery' | 'ranking'; summary: string }>
+  flow: Array<{ agent: 'intake' | 'safety-triage' | 'clinic-discovery' | 'ranking' | 'booking-handoff'; summary: string }>
   triage: { urgency: Urgency; specialty: string; emergencyBypass: boolean; disclaimer: string }
+  mcp: {
+    toolsUsed: Array<'provider_directory.lookup' | 'ranking.score' | 'booking_adapter.prepare'>
+    mode: 'stubbed-mcp-for-mvp'
+  }
   recommendations: Clinic[]
 }
 
@@ -96,6 +100,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse<Lo
         ...triage,
         disclaimer: 'This service does not provide diagnosis. If immediate danger is present, call 119 in Japan now.',
       },
+      mcp: {
+        toolsUsed: ['provider_directory.lookup', 'ranking.score', 'booking_adapter.prepare'],
+        mode: 'stubbed-mcp-for-mvp',
+      },
       recommendations: [],
     })
   }
@@ -111,10 +119,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse<Lo
       { agent: 'safety-triage', summary: `Assigned urgency=${triage.urgency}, specialty=${triage.specialty}.` },
       { agent: 'clinic-discovery', summary: `Discovered ${discovered.length} provider candidates using research-backed fallback registry.` },
       { agent: 'ranking', summary: 'Applied weighted ranking: urgency fit, specialty fit, availability, distance, reliability.' },
+      { agent: 'booking-handoff', summary: 'Prepared MCP booking-adapter handoff metadata for shortlisted providers.' },
     ],
     triage: {
       ...triage,
       disclaimer: 'This service is for care navigation support only and is not a medical diagnosis.',
+    },
+    mcp: {
+      toolsUsed: ['provider_directory.lookup', 'ranking.score', 'booking_adapter.prepare'],
+      mode: 'stubbed-mcp-for-mvp',
     },
     recommendations: ranked,
   })
