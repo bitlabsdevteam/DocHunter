@@ -1,24 +1,58 @@
 # DocHunter
 
-DocHunter is an AI Agentic Healthcare Locator for Japan.
+DocHunter is an AI Agentic Healthcare Locator for Japan (MVP/POC), designed for Vercel-first deployment with MCP-based tool boundaries.
 
-## Current POC Scope
-- Vercel-first deployment
-- React + Vite frontend
-- Fastify backend
-- English / Japanese support
-- Perplexity-backed clinic discovery research
-- OpenAI + Gemini model support (OpenAI GPT-5.4 default)
-- MCP-oriented agentic system design
-- Docker / docker-compose support
+OpenClaw architecture reference used in design thinking: https://github.com/openclaw/openclaw
 
-## Structure
-- `apps/web` — frontend
-- `apps/api` — backend
-- `.env.example` — environment template
-- `docker-compose.yml` — local container setup
-- `vercel.json` — Vercel deployment config
+## MVP Architecture Skeleton
 
-## Safety
-DocHunter must not provide medical diagnosis.
-It is a healthcare navigation and booking-assistance tool.
+- `apps/web` — React/Vite chat UI shell (EN/JA-ready)
+- `apps/api` — Fastify orchestration API
+  - `src/workflows` — care-location workflow graph seam
+  - `src/agent/framework` — framework evaluation + recommendation
+  - `src/tools` — Perplexity-backed clinic discovery adapter seam
+  - `src/mcp` — MCP registry/tool contracts (directory + booking)
+  - `src/integrations/japan-directory` — JP healthcare source registry
+
+## Framework Decision (for DocHunter)
+
+Evaluated: **LangGraph**, **LangChain**, **Mastra**, and a custom OpenClaw-style orchestrator.
+
+Current recommendation for this POC: **LangGraph**
+- best control for safety-gated healthcare flow
+- strong fit for explicit state transitions (triage → discovery → ranking → booking intent)
+- practical path to MCP tool wrapping and observability
+
+## Model Strategy
+
+- Multi-provider support: OpenAI + Gemini
+- Default provider: OpenAI
+- Default OpenAI model: `gpt-5.4`
+- Perplexity is the default discovery/research engine
+
+## Env & Secrets Strategy
+
+- Commit only `.env.example`
+- Never commit real secrets
+- Create local env with:
+  - `./scripts/setup-env.sh`
+- Load Vercel key from local OpenClaw env when deploying:
+  - `./scripts/load-vercel-env.sh`
+
+## Local Dev
+
+```bash
+npm install
+npm run dev:api
+npm run dev:web
+```
+
+## Docker
+
+```bash
+./scripts/docker-up.sh
+```
+
+## Current Safety Guardrail
+
+DocHunter does **not** provide medical diagnosis. It provides healthcare navigation and booking assistance guidance.
