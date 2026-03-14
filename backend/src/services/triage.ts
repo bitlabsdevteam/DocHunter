@@ -1,4 +1,4 @@
-import type { Urgency } from '../types/triage';
+import type { Urgency } from '../types/triage.js';
 
 export function inferUrgencyAndSpecialty(symptoms: string): { urgency: Urgency; specialty: string } {
   const s = symptoms.toLowerCase();
