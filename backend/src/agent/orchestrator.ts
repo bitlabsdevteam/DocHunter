@@ -1,6 +1,6 @@
-import type { TriageRequest, TriageResponse } from '../types/triage';
-import { inferUrgencyAndSpecialty } from '../services/triage';
-import { searchClinics } from '../services/perplexity';
+import type { TriageRequest, TriageResponse } from '../types/triage.js';
+import { inferUrgencyAndSpecialty } from '../services/triage.js';
+import { searchClinics } from '../services/perplexity.js';
 
 export async function runHealthcareLocatorAgent(input: TriageRequest): Promise<TriageResponse> {
   const { urgency, specialty } = inferUrgencyAndSpecialty(input.symptoms);

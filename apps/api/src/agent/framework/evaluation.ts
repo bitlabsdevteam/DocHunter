@@ -1,4 +1,4 @@
-export type AgentFramework = 'langgraph' | 'langchain' | 'mastra' | 'custom-openclaw-style';
+export type AgentFramework = 'langgraph' | 'langchain' | 'mastra' | 'custom-orchestrator';
 
 export interface FrameworkScore {
   framework: AgentFramework;
@@ -40,13 +40,13 @@ export const frameworkEvaluation: FrameworkScore[] = [
     rationale: 'Good DX and modern agent abstractions; MCP/healthcare-specific guardrail patterns still less battle-tested.',
   },
   {
-    framework: 'custom-openclaw-style',
+    framework: 'custom-orchestrator',
     orchestrationControl: 5,
     mcpReadiness: 4,
     vercelFit: 5,
     observability: 2,
     total: 16,
-    rationale: 'Maximum control inspired by OpenClaw architecture patterns, but higher implementation burden for POC timeline.',
+    rationale: 'Maximum control with explicit safety gates, but higher implementation burden for POC timeline.',
   },
 ];
 

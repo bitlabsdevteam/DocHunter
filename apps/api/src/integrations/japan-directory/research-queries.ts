@@ -37,10 +37,10 @@ export const discoveryQueries: ResearchQuery[] = [
     query: 'LangGraph vs LangChain vs alternatives for healthcare-safe single-agent tool orchestration on Vercel',
   },
   {
-    id: 'openclaw-architecture',
+    id: 'agentic-architecture-patterns',
     owner: 'discovery-agent',
     engine: 'perplexity',
     priority: 'p1',
-    query: 'OpenClaw architecture patterns from https://github.com/openclaw/openclaw relevant to tool boundaries and long-running workflows',
+    query: 'Agentic architecture patterns for tool boundaries and long-running workflows relevant to healthcare-safe orchestration',
   },
 ];

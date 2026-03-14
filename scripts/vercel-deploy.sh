@@ -2,10 +2,10 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-OPENCLAW_ENV="$HOME/.openclaw/.env"
+ENV_FILE="${DOCHUNTER_ENV_FILE:-$HOME/.openclaw/.env}"
 
-if [[ ! -f "$OPENCLAW_ENV" ]]; then
-  echo "Missing $OPENCLAW_ENV"
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "Missing $ENV_FILE"
   exit 1
 fi
 
@@ -15,10 +15,10 @@ if ! command -v vercel >/dev/null 2>&1; then
 fi
 
 # shellcheck disable=SC1090
-source "$OPENCLAW_ENV"
+source "$ENV_FILE"
 
 if [[ -z "${VERCEL_API_KEY:-}" ]]; then
-  echo "VERCEL_API_KEY not found in $OPENCLAW_ENV"
+  echo "VERCEL_API_KEY not found in $ENV_FILE"
   exit 1
 fi
 
@@ -29,5 +29,5 @@ if [[ -n "${VERCEL_TEAM_ID:-}" ]]; then
   CMD+=(--scope "$VERCEL_TEAM_ID")
 fi
 
-echo "Deploying DocHunter web app to Vercel (token sourced from ~/.openclaw/.env)..."
+echo "Deploying DocHunter web app to Vercel (token sourced from local machine env file)..."
 "${CMD[@]}"

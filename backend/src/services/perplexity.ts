@@ -1,4 +1,4 @@
-import type { ClinicCandidate, TriageRequest } from '../types/triage';
+import type { ClinicCandidate, TriageRequest } from '../types/triage.js';
 
 export async function searchClinics(
   input: TriageRequest & { specialty: string }
